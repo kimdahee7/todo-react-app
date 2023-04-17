@@ -8,11 +8,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items : [
-        {id:0, title: "Hello World 1", done: true},
-        {id:1, title: "Hello World 2", done: false},
-        {id:2, title: "Hello World 3", done: true},
-      ],
+      items : [],
     };
   }
   //add 함수 추가
@@ -24,13 +20,23 @@ class App extends React.Component {
     this.setState({items: thisItems}); //업데이트는 반드시 this.setState로 해야 됨
     console.log("items : ", this.state.items);
   }
+  //delete 함수 추가
+  delete = (item) => {
+    const thisItems = this.state.items;
+
+    console.log("Before delete: ", this.state.items);
+    const newItems = thisItems.filter(e => e.id!==item.id);
+    this.setState({items: newItems}, () => {
+      console.log("After delete: ", this.state.items);
+    });
+  }
 
   render() {
     var todoItems = this.state.items.length > 0 && (
       <Paper style={{margin: 16}}>
         <List>
           {this.state.items.map((item, idx) => (
-            <Todo item={item} key={item.id}/>
+            <Todo item={item} key={item.id} delete={this.delete}/>
           ))}
         </List>
       </Paper>
