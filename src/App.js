@@ -11,6 +11,29 @@ class App extends React.Component {
       items : [],
     };
   }
+
+  componentDidMount() {
+    const requestOptions = {
+      method: "GET",
+      headers: {"Content-Type": "application/json"},
+    };
+    
+    fetch("http://localhost:8080/todo",requestOptions)
+    .then((response)=> response.json())
+    .then(
+      (response) => {
+        this.setState({
+          items:response.data,
+        });
+      },
+      (error) => {
+        this.setState({
+          error,
+        });
+      }
+    );
+  }
+
   //add 함수 추가
   add= (item) => {
     const thisItems = this.state.items;
