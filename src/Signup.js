@@ -10,7 +10,7 @@ import {
 
 import {signup} from "./service/ApiService";
 
-class Signup extends React.Component {
+class SignUp extends React.Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -96,4 +96,4 @@ class Signup extends React.Component {
         );
     }
 }
-export default Signup;
+export default SignUp;
